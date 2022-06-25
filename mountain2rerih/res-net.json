@@ -1,0 +1,14 @@
+{
+    "x-path": "./data/mountain",
+    "y-path": "./data/rerih",
+    "extension": "*.jpg",
+    "batch-size": 2,
+    "generator": "res-net",
+    "lambda": 10,
+    "dropout": "False",
+    "output-images": "./res-net-images",
+    "output-models": "./res-net-models",
+    "continue": "True",
+    "preserve": 2,
+    "epochs": 100
+}

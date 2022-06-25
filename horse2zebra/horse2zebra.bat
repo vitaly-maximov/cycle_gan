@@ -1,0 +1,1 @@
+python ../src/test.py u-net.json horse.jpg zebra.jpg
