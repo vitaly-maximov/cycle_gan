@@ -5,6 +5,7 @@ from .discriminator import Discriminator
 from .u_net_generator import UNetGenerator
 from .res_net_generator import ResNetGenerator
 from .mix_generator import MixGenerator
+from .web_adapter import WebAdapter
 
 class CycleGan():
     def __init__(self, generator, lm=10, dropout=False, device='cpu'):
@@ -68,6 +69,19 @@ class CycleGan():
         self._discriminator_y.load_state_dict(checkpoint["d_y"])
         self._discriminator_y.optimizer().load_state_dict(checkpoint["d_y_optimizer"])
     
+    def export_x2y(self, path):
+        self._export(self._generator_x2y, path)
+
+    def export_y2x(self, path):
+        self._export(self._generator_y2x, path)
+    
+    def _export(self, generator, path):
+        model = WebAdapter(generator)
+        model.eval()
+
+        dummy_input = torch.zeros(128, 128, 4)
+        torch.onnx.export(model, dummy_input, path, verbose=True)
+
     def _generate(self, generator, source):
         with torch.no_grad():
             generator.eval()
