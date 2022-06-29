@@ -123,7 +123,7 @@ class CycleGan():
         one = torch.rand(real.shape, device=self._device) * 0.3 + 0.7
         zero = torch.rand(real.shape, device=self._device) * 0.3
         
-        return 0.5 * (criterion(one, real) + criterion(zero, fake))
+        return 0.5 * (criterion(real, one) + criterion(fake, zero))
     
     def _generator_loss(self, fake):
         criterion = nn.functional.binary_cross_entropy

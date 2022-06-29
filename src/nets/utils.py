@@ -52,3 +52,5 @@ def conv_block_7_1(isize, osize, **kwargs):
 def init_weights(m):
     if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
         nn.init.normal_(m.weight.data, 0.0, 0.02)
+        if m.bias is not None:
+            nn.init.constant_(m.bias.data, 0.0)
