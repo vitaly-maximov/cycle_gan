@@ -2,7 +2,7 @@
     "x-path": "./data/trainA",
     "y-path": "./data/trainB",
     "extension": "*.jpg",
-    "batch-size": 8,
+    "batch-size": 4,
     "generator": "u-net",
     "lambda": 10,
     "dropout": "False",
