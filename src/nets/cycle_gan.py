@@ -134,8 +134,8 @@ class CycleGan():
     def _discriminator_loss(self, fake, real):
         criterion = nn.functional.binary_cross_entropy
         
-        one = torch.rand(real.shape, device=self._device) * 0.3 + 0.7
-        zero = torch.rand(real.shape, device=self._device) * 0.3
+        one = torch.ones(fake.shape).to(self._device) #torch.rand(real.shape, device=self._device) * 0.3 + 0.7
+        zero = torch.zeros(fake.shape).to(self._device) #torch.rand(real.shape, device=self._device) * 0.3
         
         return 0.5 * (criterion(real, one) + criterion(fake, zero))
     
